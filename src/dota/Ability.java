@@ -8,6 +8,9 @@ package dota;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import org.json.JSONObject;
 
 
 
@@ -66,7 +69,15 @@ public class Ability implements Cloneable {
 		// CBuiltinLeafInfo: java.lang.Integer
 		this.setId(((o.getId() == null)? null : o.getId()));	
     }
-    
+    public Ability(String name, JSONObject o) {
+    	super();
+    	Set<String> key_set = o.getMap().keySet();
+		for (String key : key_set) {
+			System.out.print(" == " + key + " ");
+			//abilit.add(new Ability(key, (JSONObject)o.getMap().get(key)));
+		}
+		System.out.println("End");
+    }
 	// String name
 	public String getName() {
 		return name;
