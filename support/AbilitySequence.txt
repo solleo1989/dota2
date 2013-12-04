@@ -1,0 +1,47 @@
+// General
+ID
+AbilityType
+AbilityBehavior
+MaxLevel
+HotKeyOverride
+// Unite Target
+AbilityUnitTargetTeam
+AbilityUnitTargetType
+AbilityUnitTargetFlags
+OnCastbar
+OnLearnbar
+Modelscale
+AbilityUnitDamageType    
+// Casting
+AbilityCastRange
+AbilityCastRangeBuffer
+AbilityCastPoint
+AbilityChannelTime
+// Time
+AbilityCooldown
+AbilityDuration
+AbilitySharedCooldown
+// Damage
+AbilityDamage
+// Cost
+AbilityManaCost
+// Stats
+AbilityModifierSupportValue
+AbilityModifierSupportBonus
+// Special
+AbilitySpecial
+// ItemInfo
+ItemCost
+ItemInitialCharges
+ItemCombinable
+ItemPermanent
+ItemStackable
+ItemRecipe
+ItemDroppable
+ItemPurchasable
+ItemSellable
+ItemRequiresCharges
+ItemKillable
+ItemDisassemblable
+ItemShareability
+ItemDeclaresPurchase

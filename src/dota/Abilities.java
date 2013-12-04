@@ -18,6 +18,7 @@ import org.json.JSONObject;
 public class Abilities implements Cloneable {
 	private List<Ability> abilities;
 	public static List<String> heroes;
+	public static List<String> abilitySequence;
 	public static StringBuilder output;
 	
 	public Abilities() {
@@ -32,6 +33,7 @@ public class Abilities implements Cloneable {
 			throw new NullPointerException("Can't copy from a null Abilities object");
 		Set<String> key_set = o.getMap().keySet();
 		loadinHeroes();
+		loadAbilitySequence();
 		for (String key : key_set) {
 			if (!(o.getMap().get(key) instanceof String)) {
 				boolean contained = false;
@@ -44,6 +46,7 @@ public class Abilities implements Cloneable {
 				}
 				if (contained) {
 					output.append(HeroAbility.getHeroName(heroname) + ": " + HeroAbility.getSkillName(heroname, key) + "\n");
+					//System.out.println(HeroAbility.getHeroName(heroname) + ": " + HeroAbility.getSkillName(heroname, key) + "\n");
 					abilities.add(new HeroAbility(key, (JSONObject)o.getMap().get(key)));
 				} else {
 					abilities.add(new Ability(key, (JSONObject)o.getMap().get(key)));									
@@ -65,7 +68,7 @@ public class Abilities implements Cloneable {
 			this.abilities.add(new Ability(o));
 	}*/
 	public static void loadinHeroes() throws IOException {
-		String file = "Heroes.txt";
+		String file = "support/Heroes.txt";
 		String line;
 		InputStream fis = new FileInputStream(file);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
@@ -78,6 +81,21 @@ public class Abilities implements Cloneable {
 //		System.out.println(heroes.size());
 //		for (String s : heroes)
 //			System.out.println(s);	
+	}
+	public static void loadAbilitySequence() throws IOException {
+		String file = "support/AbilitySequence.txt";
+		String line;
+		InputStream fis = new FileInputStream(file);
+		BufferedReader br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+		abilitySequence = new ArrayList<String>();
+		while ((line = br.readLine()) != null) {
+			if (!line.startsWith("//"))
+				abilitySequence.add(line);
+		}
+		br.close();		
+		System.out.println(abilitySequence.size());
+		for (String s : abilitySequence)
+			System.out.println(s);
 	}
 	
 	public static void writeoutInfo() throws IOException {
