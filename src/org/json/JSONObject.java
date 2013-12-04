@@ -134,7 +134,7 @@ public class JSONObject {
      * The map where the JSONObject's properties are kept.
      */
     private final Map map;
-
+    
 
     /**
      * It is sometimes more convenient and less ambiguous to have a
@@ -245,7 +245,7 @@ public class JSONObject {
                 Map.Entry e = (Map.Entry)i.next();
                 Object value = e.getValue();
                 if (value != null) {
-                    this.map.put(e.getKey(), wrap(value));
+                    this.getMap().put(e.getKey(), wrap(value));
                 }
             }
         }
@@ -652,7 +652,7 @@ public class JSONObject {
      * @return      true if the key exists in the JSONObject.
      */
     public boolean has(String key) {
-        return this.map.containsKey(key);
+        return this.getMap().containsKey(key);
     }
 
 
@@ -702,7 +702,7 @@ public class JSONObject {
      * @return An iterator of the keys.
      */
     public Iterator keys() {
-        return this.map.keySet().iterator();
+        return this.getMap().keySet().iterator();
     }
 
 
@@ -712,7 +712,7 @@ public class JSONObject {
      * @return The number of keys in the JSONObject.
      */
     public int length() {
-        return this.map.size();
+        return this.getMap().size();
     }
 
 
@@ -766,7 +766,7 @@ public class JSONObject {
      * @return      An object which is the value, or null if there is no value.
      */
     public Object opt(String key) {
-        return key == null ? null : this.map.get(key);
+        return key == null ? null : this.getMap().get(key);
     }
 
 
@@ -993,7 +993,7 @@ public class JSONObject {
 
                         Object result = method.invoke(bean, (Object[])null);
                         if (result != null) {
-                            this.map.put(key, wrap(result));
+                            this.getMap().put(key, wrap(result));
                         }
                     }
                 }
@@ -1104,7 +1104,7 @@ public class JSONObject {
         }
         if (value != null) {
             testValidity(value);
-            this.map.put(key, value);
+            this.getMap().put(key, value);
         } else {
             this.remove(key);
         }
@@ -1112,7 +1112,12 @@ public class JSONObject {
     }
 
 
-    /**
+    public Map getMap() {
+		return map;
+	}
+
+
+	/**
      * Put a key/value pair in the JSONObject, but only if the key and the
      * value are both non-null, and only if there is not already a member
      * with that name.
@@ -1234,7 +1239,7 @@ public class JSONObject {
      * or null if there was no value.
      */
     public Object remove(String key) {
-        return this.map.remove(key);
+        return this.getMap().remove(key);
     }
 
     /**
@@ -1558,7 +1563,7 @@ public class JSONObject {
                 if (indentFactor > 0) {
                     writer.write(' ');
                 }
-                writeValue(writer, this.map.get(key), indentFactor, indent);
+                writeValue(writer, this.getMap().get(key), indentFactor, indent);
             } else if (length != 0) {
                 final int newindent = indent + indentFactor;
                 while (keys.hasNext()) {
@@ -1575,7 +1580,7 @@ public class JSONObject {
                     if (indentFactor > 0) {
                         writer.write(' ');
                     }
-                    writeValue(writer, this.map.get(key), indentFactor,
+                    writeValue(writer, this.getMap().get(key), indentFactor,
                             newindent);
                     commanate = true;
                 }

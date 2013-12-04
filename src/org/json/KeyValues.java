@@ -18,10 +18,13 @@ public class KeyValues {
             key = k.nextString(KeyValuesTokener.STRING_DELIMITER);
 
         value = k.nextValue();
+        	
         
         //context.accumulate(key, value);
         if (context.has(key)) context.remove(key);
         context.put(key, value);
+        
+        //if (key == "DOTAAbilities")
         
         c = k.nextClean();
         if (c == KeyValuesTokener.STRING_DELIMITER)
@@ -37,6 +40,7 @@ public class KeyValues {
         JSONObject jo = new JSONObject();
         boolean run = true;
         while (k.more() && run) {
+        	// TODO: jo => context
             run = parse(k, jo);
         }
         return jo;

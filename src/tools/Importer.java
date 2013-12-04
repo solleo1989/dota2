@@ -23,7 +23,7 @@ public class Importer {
 		String imageDst = "root" + image_directory;
 		try {
 			copyFiles(inforSrc, inforDst);
-			copyFiles(imageSrc, imageDst);
+			//copyFiles(imageSrc, imageDst);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

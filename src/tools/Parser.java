@@ -7,7 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.KeyValues;
+
+import dota.JSONParser;
 
 public class Parser {
 
@@ -32,9 +35,9 @@ public class Parser {
     	File dir = new File("output");
     	dir.mkdir();
 		try {
-			writeOutTokens(readInTokens(items), items_output);
-			writeOutTokens(readInTokens(heroes), heroes_output);
-			writeOutTokens(readInTokens(units), units_output);
+			//writeOutTokens(readInTokens(items), items_output);
+			//writeOutTokens(readInTokens(heroes), heroes_output);
+			//writeOutTokens(readInTokens(units), units_output);
 			writeOutTokens(readInTokens(abilitis), abilitis_output);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -48,7 +51,9 @@ public class Parser {
 	
 	public static String readInTokens(String input_file) throws IOException, JSONException {
         FileInputStream in = new FileInputStream(input_file);
-        StringBuilder str = new StringBuilder(KeyValues.toJSONObject(in).toString(4));
+        JSONObject obj = KeyValues.toJSONObject(in);
+        JSONParser parser = new JSONParser(obj);
+        StringBuilder str = new StringBuilder(obj.toString(4));
         return str.toString();
     }
     public static void writeOutTokens(String content, String output_file) throws IOException {
